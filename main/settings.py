@@ -3,7 +3,7 @@ MAde use of https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-ext
 article for preparing this repo.
 Found myself revisiting this alot of times.
 """
-
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-7g62+57qm$k!0(-2a!=ncw7u!1ky_507ar=1*ov(=&&vd=k6hu"
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # added the users app
-    "users",
+    "user",
 ]
 
 MIDDLEWARE = [
@@ -129,7 +129,7 @@ LOGIN_URL = "/login/"
 
 
 # Declaring default user model appName.ModelName
-AUTH_USER_MODEL = users.User
+AUTH_USER_MODEL = "user.User"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
