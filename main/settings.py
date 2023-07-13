@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # added the users app
     "user",
+    "flow",
+    "form",
 ]
 
 MIDDLEWARE = [
@@ -50,7 +52,7 @@ ROOT_URLCONF = "main.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ['templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

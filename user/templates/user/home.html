@@ -1,0 +1,16 @@
+{% extends 'user/base.html' %} 
+{% load static %} 
+{% block title %}Home{% endblock title %}
+{% block content %}
+<div class="">
+    <header>
+
+        <h4>Welcome, {{ user.first_name }} | {{ user.role.role_name }}</h4>
+    </header>
+<article>
+    <a href="{% url 'sales_to_vendor_form' %}"><button>Raise new request</button></a>
+</article>
+
+
+</div>
+{% endblock content %}

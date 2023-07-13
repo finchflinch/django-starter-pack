@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/mvp.css' %}" />
+    {% block headers %}
+    {% endblock headers %}
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <div>
+        NAVBAR
+        {{ user.first_name }} | {{ user.role.role_name }}
+    </div>
+    <a href="{% url 'logout' %}">Logout</a>
+    {% endif %}
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+    {% block scripts %}
+    {% endblock scripts %}
+</body>
+</html>

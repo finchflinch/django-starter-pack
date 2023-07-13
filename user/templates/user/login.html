@@ -1,0 +1,25 @@
+{% extends 'user/base.html' %} 
+{% load static %} 
+{% block title %}Login{% endblock title %}
+{% block content %}
+
+
+<div class="form-group">
+  
+  <form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+      <h2>Sales to Vendor FlowsApp</h2>
+      <div>
+        <label for="email">Enter Email:</label>
+        <input type="email" name="email" id="email">
+      </div>
+      <div>
+        <label for="password">Enter Password:</label>
+        <input type="password" name="password" id="password">
+      </div>
+      <div>
+        <input type="submit" value="Login ">
+      </div>
+    </form>
+  </div>
+{% endblock content %}
