@@ -4,7 +4,7 @@ from .models import SalesToVendor
 class SalesToVendorForm(ModelForm):
     class Meta:
         model = SalesToVendor
-        exclude = ["form_id", "date_created"]
+        exclude = ["form_id", "date_created", "reach_code", "status"]
         widgets = {
             'planned_del_date': DateInput(attrs={'type': 'date'}),
             'planned_reciept_date': DateInput(attrs={'type': 'date'}),
@@ -18,4 +18,3 @@ class SalesToVendorForm(ModelForm):
                 field.required = True
         self.fields['company_code'].initial = user.company
         self.fields['company_code'].widget.attrs['readonly'] = True
-        # self.fields['reach_code']

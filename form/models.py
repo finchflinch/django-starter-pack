@@ -40,7 +40,9 @@ class SalesToVendor(models.Model):
     date_created = models.DateField(_("Date Created"), auto_now=False, auto_now_add=True)
 
     # form metadata for managing flows
-    status = models.CharField(_("Form Status"), max_length=15, choices=STATUS_CHOICES)
+    status = models.CharField(_("Form Status"), max_length=15, choices=STATUS_CHOICES, default="IN_PROCESS")
     reach_code = models.ForeignKey(Flow, on_delete=models.PROTECT)
 
+    def __str__(self):
+        return f"{self.reach_code}_Sales To Order"
 

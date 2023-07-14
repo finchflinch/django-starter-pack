@@ -8,7 +8,18 @@
         <h4>Welcome, {{ user.first_name }} | {{ user.role.role_name }}</h4>
     </header>
 <article>
+    {% if user.role.role_name == 'PLANT STORE' %}
     <a href="{% url 'sales_to_vendor_form' %}"><button>Raise new request</button></a>
+    {% endif %}
+    {% if user.role.role_name == 'PLANNING' %}
+        {{ pending_requests }}
+    {% endif %}
+    {% if user.role.role_name == 'FINANCE' %}
+        {{ pending_requests }}
+    {% endif %}
+    {% if user.role.role_name == 'PLANT HEAD' %}
+        {{ pending_requests }}
+    {% endif %}
 </article>
 
 

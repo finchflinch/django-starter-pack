@@ -4,6 +4,9 @@
 {% block content %}
 <div class="container">
     <header><h3>Sale to Vendor</h3></header>
+    {% if msg %}
+    {{ msg }}
+    {% endif %}
     <form action="{% url 'sales_to_vendor_form' %}" method="post">
         {% csrf_token %}
         {{ form.as_div }}
