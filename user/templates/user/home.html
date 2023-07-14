@@ -11,15 +11,16 @@
     {% if user.role.role_name == 'PLANT STORE' %}
     <a href="{% url 'sales_to_vendor_form' %}"><button>Raise new request</button></a>
     {% endif %}
-    {% if user.role.role_name == 'PLANNING' %}
-        {{ pending_requests }}
-    {% endif %}
-    {% if user.role.role_name == 'FINANCE' %}
-        {{ pending_requests }}
-    {% endif %}
-    {% if user.role.role_name == 'PLANT HEAD' %}
-        {{ pending_requests }}
-    {% endif %}
+    <div>
+        {% if user.role.role_name == 'PLANNING' or user.role.role_name == 'FINANCE' or user.role.role_name == 'PLANT HEAD' %}
+        <ol>
+            {% for form in pending_requests %}
+            <li><a href="{% url 'sales_to_vendor_approval' form_id=form.form_id %}">{{ form.company_code }} | {{ form.form_id }} | {{ form.reach_code }}</a></li>
+            {% endfor %}
+        </ol>
+        {% endif %}
+    </div>
+
 </article>
 
 

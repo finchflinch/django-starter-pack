@@ -19,7 +19,7 @@ def home(request):
         print(pending_at_role)
         flow= Flow(pending_at_role=pending_at_role)
         print(flow)
-        pending_requests = SalesToVendor.objects.filter(status='IN_PROCESS', company_code=user.company, reach_code__pending_at_role__role_name=user.role)
+        pending_requests = SalesToVendor.objects.filter(status='IN_PROCESS', company_code=user.company, reach_code__pending_at_role__role_name=user.role).order_by('-date_created')
         print(pending_requests)
         context["pending_requests"] = pending_requests
 

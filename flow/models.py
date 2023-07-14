@@ -5,7 +5,8 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class FlowName(models.Model):
-    flow_name = models.TextField(_("name of flow"), max_length=200)
+    flow_name = models.CharField(_("name of flow"), max_length=200)
+    flow_abbr = models.CharField(_('Flow Name Abbreviation'), max_length=3, unique=True, blank=True)
 
     def __str__(self):
         return f"{self.flow_name}"
@@ -23,4 +24,4 @@ class Flow(models.Model):
     )
 
     def __str__(self):
-        return f"{self.flow_name}_{self.pending_at_role}"
+        return f"{self.flow_name}_{self.reach_code}_{self.pending_at_role}"

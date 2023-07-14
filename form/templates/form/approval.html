@@ -1,0 +1,38 @@
+{% extends 'user/base.html' %} 
+{% load static %} 
+{% load tz %}
+{% localtime on %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+<div class="container">
+    <form action="{% url 'sales_to_vendor_approval' form_id=form_id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_div }}
+        {% if form_editable %}
+        <button type="submit">Submit</button>
+        {% endif %}
+    </form>
+</div>
+<br/>
+<div class="container">
+    {% if all_comments %}
+    <div>
+<h4>Previous Remarks</h4>
+        <ul>
+        {% for one_comment in all_comments %}
+            <li>{{ one_comment.commentor.first_name}}: {{ one_comment.get_action_display }} at {{ one_comment.comment_date|date:"d/m/Y"}} {{ one_comment.comment_date|time:"h:i A"}}</li>
+            <p>Remark: {{ one_comment.remark }}</p>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if comment %}
+    <form action="{% url 'comment' form_id=form_id %}" method="post">
+        {% csrf_token %}
+        {{ comment.as_div }}
+    <button type="submit">Comment</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock content %}
+{% endlocaltime %}

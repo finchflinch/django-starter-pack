@@ -1,5 +1,7 @@
 from django.db import models
-from flow.models import Flow
+from flow.models import Flow, FlowName
+
+from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
 STATUS_CHOICES = [
@@ -8,7 +10,11 @@ STATUS_CHOICES = [
     ("REJECTED", "Rejected"),
     ("ON_HOLD", "On Hold"),
 ]
-
+COMMENT_CHOICES = [
+    ("APPROVED", "Approved"),
+    ("REJECTED", "Rejected"),
+    ("ON_HOLD", "On Hold"),
+]
 
 # Create your models here.
 class SalesToVendor(models.Model):
@@ -46,3 +52,11 @@ class SalesToVendor(models.Model):
     def __str__(self):
         return f"{self.reach_code}_Sales To Order"
 
+
+class Comment(models.Model):
+    remark = models.CharField(_("Remarks"), max_length=300)
+    action = models.CharField(_("Actions"), max_length=20, choices=COMMENT_CHOICES, blank=False, default="APPROVED")
+    comment_date = models.DateTimeField(_("Date time of remark"), auto_now=False, auto_now_add=True)
+    form_id = models.CharField(_("Form ID"), max_length=20)
+    flow_type = models.ForeignKey(FlowName, on_delete=models.CASCADE)
+    commentor = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
