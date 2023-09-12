@@ -57,8 +57,8 @@ def comment(request, form_id):
             elif comment.instance.action == 'REJECTED':
                 form.status = 'REJECTED'
                 form.save()
-
-        return redirect(request.META.get('HTTP_REFERER', '/'))
+        return redirect('home')
+        # return redirect(request.META.get('HTTP_REFERER', '/'))
 
 @login_required
 def sales_to_vendor_approval(request, form_id):

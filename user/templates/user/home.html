@@ -13,6 +13,9 @@
     {% endif %}
     <div>
         {% if user.role.role_name == 'PLANNING' or user.role.role_name == 'FINANCE' or user.role.role_name == 'PLANT HEAD' %}
+
+            <p>You have {{ pending_requests|length }} pending requests.</p>
+ 
         <ol>
             {% for form in pending_requests %}
             <li><a href="{% url 'sales_to_vendor_approval' form_id=form.form_id %}">{{ form.company_code }} | {{ form.form_id }} | {{ form.reach_code }}</a></li>
